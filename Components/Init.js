@@ -1,20 +1,20 @@
-import { StyleSheet, Image, Dimensions, View, Text, TouchableOpacity, ScrollView, SafeAreaProvider} from 'react-native'
+import { StyleSheet, Image, Dimensions, View, Text, TouchableOpacity, ScrollView} from 'react-native'
 import {BackGround} from './BackGround'
 import {portada} from './../assets/portada.jpg'
 
-export function Init(){
+export default function Init(){
  
     const{height} = Dimensions.get('screen');
 
     return(
             <ScrollView>
-                <Image source= {portada}
+                {/*<Image source= {portada}
                 style={{
                     width: '85%',
                     height: (height/3)*1.4,
                     borderRadius: 20,
                     marginBottom: 40,
-                }}/>
+                }}/>*/}
                 <View style = {styles.view}>
                 <Text style = {styles.title}>Bienvenido </Text>
                     <View style={styles.buttonContainer}>
