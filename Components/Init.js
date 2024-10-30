@@ -1,28 +1,30 @@
 import { StyleSheet, Image, Dimensions, View, Text, TouchableOpacity, ScrollView} from 'react-native'
-import {BackGround} from './BackGround'
 import {portada} from './../assets/portada.jpg'
 
-export default function Init(){
+
+export default function Init({navigation}){
  
     const{height} = Dimensions.get('screen');
 
     return(
-            <ScrollView>
-                {/*<Image source= {portada}
+            <ScrollView style = {styles.view}>
+                {<Image source= {portada}
                 style={{
                     width: '85%',
                     height: (height/3)*1.4,
                     borderRadius: 20,
                     marginBottom: 40,
-                }}/>*/}
-                <View style = {styles.view}>
+                }}/>}
+                <View >
                 <Text style = {styles.title}>Bienvenido </Text>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.button1}>
+                        <TouchableOpacity onPress={()=>navigation.navigate('Register')}
+                        style={styles.button1}>
                             <Text style={styles.buttonText}>Registrate</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.button2}>
-                            <Text style={styles.buttonText}>Sing In</Text>
+                        <TouchableOpacity onPress={()=>navigation.navigate('SignIn')} 
+                        style={styles.button2}>
+                            <Text style={styles.buttonText}>SignIn</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -33,6 +35,8 @@ export default function Init(){
 const styles = StyleSheet.create({
     view:{
         paddingHorizontal: 30,
+        paddingTop: 40,
+        backgroundColor: 'pink',
     },
     title:{
         fontSize: 32, 

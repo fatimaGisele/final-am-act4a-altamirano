@@ -1,9 +1,9 @@
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-native"
 
-export default function Register({navigation}){
+export default function SignIn({navigation}){
     return(
-        <ScrollView style = {styles.view}>
-        <Text style={styles.title}>Hola Bienvenido desde el Register</Text>
+    <ScrollView style = {styles.view}>
+        <Text style={styles.title}>Hola de nuevo!</Text>
         <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={()=>navigation.navigate('Init')} style={styles.button1}>
             <Text style={styles.buttonText}>Volver</Text>
