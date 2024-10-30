@@ -2,7 +2,8 @@ import * as React from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import  Init  from './Init';
-import  SingIn  from './SingIn';
+import SignIn from './SignIn';
+import Register from './Register';
 
 
 
@@ -15,7 +16,8 @@ export function MyNavigation(){
         <NavigationContainer>
             <stack.Navigator>
                 <stack.Screen name="Init" component={Init} options={{headerShown:false}}/>
-                <stack.Screen name="SingIn" component={SingIn} options={{headerShown:false}}/>
+                <stack.Screen name="SignIn" component={SignIn} options={{headerShown:false}}/>
+                <stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
             </stack.Navigator>
         </NavigationContainer>
     )
