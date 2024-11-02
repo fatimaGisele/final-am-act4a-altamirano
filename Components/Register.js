@@ -1,11 +1,50 @@
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-native"
+import { useState } from "react";
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, Alert } from "react-native"
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { initializeApp } from "firebase/app"
+import { firebaseConfig } from './../lib/firebaseConfig';
+
 
 export default function Register({navigation}){
+
+    const [user, setUser] = useState('');
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
+
+    const create = initializeApp(firebaseConfig);
+    const auth = getAuth(create);
+
+    const handlerCreateAccount=async()=>{
+        try {
+            let account = await createUserWithEmailAndPassword(auth, email, pass);
+            console.log(account.user);
+            navigation.navigate('ApodCard');
+        } catch (error) {
+            console.log(error);
+            Alert.alert(error.message);
+        }
+        
+    }
+
     return(
         <ScrollView style = {styles.view}>
-        <Text style={styles.title}>Hola Bienvenido desde el Register</Text>
+        <Text style={styles.title}>Bienvenido</Text>
+
+            <TextInput style={styles.input} onChangeText={(text)=>setUser(text)}
+              placeholder="Usuario" autoCorrect={false}/>
+            <TextInput style={styles.input} 
+                onChangeText={(text)=>setEmail(text)}  placeholder="Email" autoCorrect={false}/>
+            <TextInput style={styles.input} 
+                onChangeText={(text)=>setPass(text)} placeholder="Ingrese su contraseña" autoCorrect={false}
+                secureTextEntry={true}/>
+            <TextInput style={styles.input} placeholder="Confirmar contraseña" autoCorrect={false}
+                secureTextEntry={true}/>
+            <TouchableOpacity style={styles.registerButton} onPress={handlerCreateAccount}>
+                <Text style={{color:'white', fontWeight:'bold'}}>Registrarme</Text>
+            </TouchableOpacity>
+
         <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={()=>navigation.navigate('Init')} style={styles.button1}>
+        <TouchableOpacity onPress={()=>navigation.navigate('Init')} style={styles.button}>
             <Text style={styles.buttonText}>Volver</Text>
         </TouchableOpacity>
         </View>
@@ -25,6 +64,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         lineHeight: 35, 
         color: 'white',
+        marginBottom: 40
     },
     body:{
         paddingTop: 20,
@@ -43,15 +83,7 @@ const styles = StyleSheet.create({
         backgroundColor:'',
         marginTop: 40,
     },
-    button1:{
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: 'pink',
-        opacity: '70%',
-        padding:16,
-        borderRadius: 6,
-    },
-    button2:{
+    button:{
         flex: 1,
         alignItems: 'center',
         padding:16,
@@ -60,5 +92,25 @@ const styles = StyleSheet.create({
     buttonText:{
         fontWeight: "bold",
         color: 'white'
+    },
+    input:{
+        backgroundColor:'white',
+        padding:20,
+        borderRadius:16,
+        marginBottom: 10,
+    },
+    registerButton:{
+        backgroundColor:'coral',
+        padding: 20,
+        borderRadius:16,
+        alignItems: 'center',
+        marginVertical: 30,
+        shadowColor: 'coral',
+        shadowOffset: {
+            width: 0,
+            height: 8,
+        },
+        shadowOpacity: .44,
+        shadowRadius: 10.32,
     }
 })

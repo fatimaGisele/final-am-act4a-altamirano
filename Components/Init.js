@@ -15,7 +15,7 @@ export default function Init({navigation}){
                     borderRadius: 20,
                     marginBottom: 40,
                 }}/>}
-                <View >
+                <View style = {styles.body}>
                 <Text style = {styles.title}>Bienvenido </Text>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity onPress={()=>navigation.navigate('Register')}
@@ -24,7 +24,7 @@ export default function Init({navigation}){
                         </TouchableOpacity>
                         <TouchableOpacity onPress={()=>navigation.navigate('SignIn')} 
                         style={styles.button2}>
-                            <Text style={styles.buttonText}>SignIn</Text>
+                            <Text style={styles.buttonText}>Iniciar Sesion</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
