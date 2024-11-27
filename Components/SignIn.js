@@ -1,21 +1,24 @@
 import { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput } from "react-native"
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, Alert } from "react-native"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
-import { initializeApp } from "firebase/app"
+import { initializeApp} from "firebase/app"
 import { firebaseConfig } from './../lib/firebaseConfig';
+//import {getFirestore, collection, addDoc} from 'firebase/firestore';
 
 export default function SignIn({navigation}){
 
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
+    
     const create = initializeApp(firebaseConfig);
     const auth = getAuth(create);
 
-    const handlerSignIn=async()=>{
+    const signIn=async()=>{
         try {
-            let account = await signInWithEmailAndPassword(auth, email, pass);
-            console.log(account.user);
+            const account = await signInWithEmailAndPassword(auth, email, pass);
+            console.log(account.user.email);
+            console.log(account.user.pass);
             navigation.navigate('ApodCard');
         } catch (error) {
             console.log(error);
@@ -37,7 +40,7 @@ export default function SignIn({navigation}){
                 <Text style={[styles.buttonText, {fontWeight:'bold', lineHeight:30, textAlign:'right'}]}>
                     Recuperar Contraseña</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.SignInButton} onPress={handlerSignIn}>
+            <TouchableOpacity style={styles.SignInButton} onPress={signIn} >
                 <Text style={{color:'white', fontWeight:'bold'}}>Iniciar sesion</Text>
             </TouchableOpacity>
        

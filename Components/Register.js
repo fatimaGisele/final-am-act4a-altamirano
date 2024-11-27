@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, Alert } from "react-native"
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import { initializeApp } from "firebase/app"
 import { firebaseConfig } from './../lib/firebaseConfig';
+import {getFirestore, collection, addDoc} from 'firebase/firestore';
+
 
 
 export default function Register({navigation}){
@@ -11,19 +13,38 @@ export default function Register({navigation}){
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
+
     const create = initializeApp(firebaseConfig);
     const auth = getAuth(create);
+    const db = getFirestore(create);
 
-    const handlerCreateAccount=async()=>{
+    const createAccount=async()=>{
         try {
-            let account = await createUserWithEmailAndPassword(auth, email, pass);
-            console.log(account.user);
+            const account = await createUserWithEmailAndPassword(auth, email, pass);
+            console.log(account.user.email);
+            console.log(account.user.pass);
+            writeUserData();
             navigation.navigate('ApodCard');
         } catch (error) {
             console.log(error);
             Alert.alert(error.message);
         }
         
+    }
+
+    const writeUserData=async()=>{
+        try {
+            const userData = await addDoc(collection(db, "Usuario"),{
+                usuario: user,
+                email: email,
+                contraseña: pass
+            });
+            console.log('usuario cargado exitosamente',userData.id);
+        } catch (error) {
+            console.log(error);
+            Alert.alert(error.message);
+        }
+
     }
 
     return(
@@ -37,9 +58,7 @@ export default function Register({navigation}){
             <TextInput style={styles.input} 
                 onChangeText={(text)=>setPass(text)} placeholder="Ingrese su contraseña" autoCorrect={false}
                 secureTextEntry={true}/>
-            <TextInput style={styles.input} placeholder="Confirmar contraseña" autoCorrect={false}
-                secureTextEntry={true}/>
-            <TouchableOpacity style={styles.registerButton} onPress={handlerCreateAccount}>
+            <TouchableOpacity style={styles.registerButton} onPress={createAccount}>
                 <Text style={{color:'white', fontWeight:'bold'}}>Registrarme</Text>
             </TouchableOpacity>
 
