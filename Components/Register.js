@@ -21,8 +21,6 @@ export default function Register({navigation}){
     const createAccount=async()=>{
         try {
             const account = await createUserWithEmailAndPassword(auth, email, pass);
-            console.log(account.user.email);
-            console.log(account.user.pass);
             writeUserData();
             navigation.navigate('ApodCard');
         } catch (error) {

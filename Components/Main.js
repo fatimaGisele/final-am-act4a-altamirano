@@ -1,7 +1,7 @@
 import { imageOfTheDay } from "../lib/http";
 import { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity} from "react-native";
-import User from './User';
+import User from './UserData';
 
 export default function ApodCard({navigation}) {
 

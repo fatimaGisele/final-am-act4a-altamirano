@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, Alert 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { initializeApp} from "firebase/app"
 import { firebaseConfig } from './../lib/firebaseConfig';
-//import {getFirestore, collection, addDoc} from 'firebase/firestore';
+
 
 export default function SignIn({navigation}){
 
@@ -17,8 +17,6 @@ export default function SignIn({navigation}){
     const signIn=async()=>{
         try {
             const account = await signInWithEmailAndPassword(auth, email, pass);
-            console.log(account.user.email);
-            console.log(account.user.pass);
             navigation.navigate('ApodCard');
         } catch (error) {
             console.log(error);
