@@ -6,6 +6,7 @@ import SignIn from './SignIn';
 import Register from './Register';
 import ApodCard from './Main';
 import UserData from './UserData';
+import SignOut from './SignOut';
 
 
 
@@ -16,11 +17,12 @@ export function MyNavigation(){
     return(
         <NavigationContainer>
             <stack.Navigator>
-                <stack.Screen name="Init" component={Init} options={{headerShown:false}}/>
-                <stack.Screen name="SignIn" component={SignIn} options={{headerShown:false}}/>
-                <stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
-                <stack.Screen name="ApodCard" component={ApodCard} options={{headerShown:false}}/>
-                <stack.Screen name="User" component={UserData} options={{headerShown:false}}/>
+                <stack.Screen name="Init" component={Init}/>
+                <stack.Screen name="SignIn" component={SignIn} />
+                <stack.Screen name="Register" component={Register}/>
+                <stack.Screen name="ApodCard" component={ApodCard}/>
+                <stack.Screen name="UserData" component={UserData}/>
+                <stack.Screen name="SignOut" component={SignOut}/>
             </stack.Navigator>
         </NavigationContainer>
     )

@@ -1,7 +1,7 @@
 import { imageOfTheDay } from "../lib/http";
 import { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity} from "react-native";
-import User from './UserData';
+import UserData from './UserData';
 
 export default function ApodCard({navigation}) {
 
@@ -23,7 +23,7 @@ export default function ApodCard({navigation}) {
      
   return (
     <ScrollView style={styles.card}>  
-    <User/>   
+    <UserData/>   
       <View style={styles.view}>
         <Image source={{ uri: apod.hdurl }} style={styles.image} />
         <Text style={styles.title}>{apod.title}</Text>
