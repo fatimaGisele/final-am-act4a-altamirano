@@ -1,10 +1,10 @@
 //muestra la imagen del dia elegido
 import { useState, useEffect } from "react"
-import { Text, View, StyleSheet, ScrollView, TouchableOpacity, Image } from "react-native";
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity, Image,Alert } from "react-native";
 import { imageOfADay } from "../lib/http";
 
 
-export default function EventOfADay({day,month,year,setVisible,navigation}){
+export default function EventOfADay({day,month,year,returnTo}){
 
     const [date, setDate] =useState(`${year}`+'-'+`${month}`+'-'+`${day}`);
     const [apod, setApod] = useState([]);
@@ -16,6 +16,7 @@ export default function EventOfADay({day,month,year,setVisible,navigation}){
             console.log(newImage);
         } catch (error) {
             console.log(error)
+            Alert.alert(error)
         }
        
     }
@@ -24,11 +25,6 @@ export default function EventOfADay({day,month,year,setVisible,navigation}){
      firstApod();
        }, []);
      
-
-    const showDate=()=>{
-        console.log('date desde eventOfADay '+`${day}`+'/'+`${month}`+'/'+`${year}`)
-        //setVisible(false);
-    }
 
     return(
         <ScrollView style={styles.card}>    
@@ -39,7 +35,7 @@ export default function EventOfADay({day,month,year,setVisible,navigation}){
                 <Text style={styles.description}>{apod.explanation}</Text>
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={()=>navigation.navigate('Init')} style={styles.button}>
+                <TouchableOpacity onPress={returnTo} style={styles.button}>
                     <Text style={styles.buttonText}>Volver</Text>
                 </TouchableOpacity>
             </View>
