@@ -13,10 +13,9 @@ export default function EventOfADay({day,month,year,returnTo}){
         try {
             let newImage = await imageOfADay(date)
             setApod(newImage);
-            console.log(newImage);
         } catch (error) {
-            console.log(error)
-            Alert.alert(error)
+            Alert.alert('Debe elegir una fecha anterior o igual a la actual')
+            returnTo();
         }
        
     }

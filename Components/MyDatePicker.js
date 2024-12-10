@@ -23,7 +23,6 @@ export default function MyDatePicker({navigation}){
         }else{
             setMonth(selectedDate.getMonth()+1);
         }
-        console.log('fecha selecccionada: '+`${day}`+'/'+`${month}`+'/'+`${year}`);
         setVisible(false);
         setHide(true);
     }

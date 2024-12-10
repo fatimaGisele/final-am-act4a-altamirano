@@ -15,7 +15,18 @@ export default function UserData({navigation}){
 
     return(
         <View>
-            <Text>Bienvenido {e}!!!</Text>           
+            <Text style={styles.text}>Bienvenido {e}</Text>           
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    text:{
+        fontSize: 20,
+        color: "#eee",
+        textAlign: 'center',
+        margin: 10,
+        paddingTop:40, 
+        fontWeight: 400
+    }
+})

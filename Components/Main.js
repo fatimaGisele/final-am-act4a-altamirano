@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity} from "react-native";
 import UserData from './UserData';
 
+
 export default function ApodCard({navigation}) {
 
     const [apod, setApod] = useState([]);
@@ -17,13 +18,25 @@ export default function ApodCard({navigation}) {
        
     }
 
+    const goToDP=()=>{
+      navigation.navigate('MyDatePicker')
+      
+    }
+
     useEffect(() => {
      firstApod();
        }, []);
      
   return (
     <ScrollView style={styles.card}>  
-    <UserData/>   
+    <UserData/>
+
+    <View style={styles.buttonContainer}>
+      <TouchableOpacity onPress={goToDP} style={styles.button}>
+        <Text  style={styles.buttonText}>Elige un dia</Text>
+      </TouchableOpacity>
+    </View>
+   
       <View style={styles.view}>
         <Image source={{ uri: apod.hdurl }} style={styles.image} />
         <Text style={styles.title}>{apod.title}</Text>
