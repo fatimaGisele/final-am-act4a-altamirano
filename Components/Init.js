@@ -1,5 +1,5 @@
 import { StyleSheet, Image, Dimensions, View, Text, TouchableOpacity, ScrollView} from 'react-native'
-import {portada} from './../assets/portada.jpg'
+
 
 
 export default function Init({navigation}){
@@ -8,12 +8,14 @@ export default function Init({navigation}){
 
     return(
             <ScrollView style = {styles.view}>
-                {<Image source= {portada}
+                {<Image source={require('./../assets/galaxy.png')}
                 style={{
-                    width: '85%',
-                    height: (height/3)*1.4,
+                    width: '100%',
+                    height: (height/3)*1.6,
                     borderRadius: 20,
-                    marginBottom: 40,
+                    margin: 30,
+                    justifyContent: 'center',
+                    alignSelf: 'center'
                 }}/>}
                 <View style = {styles.body}>
                 <Text style = {styles.title}>Bienvenido </Text>
@@ -36,14 +38,14 @@ const styles = StyleSheet.create({
     view:{
         paddingHorizontal: 30,
         paddingTop: 40,
-        backgroundColor: 'pink',
+        backgroundColor: '#1a2749',
     },
     title:{
         fontSize: 32, 
         fontWeight: "bold",
         textAlign: 'center',
         lineHeight: 35, 
-        color: 'white',
+        color: '#e4d9ff',
     },
     body:{
         paddingTop: 20,
@@ -51,13 +53,13 @@ const styles = StyleSheet.create({
         lineHeight: 23,
         fontWeight: "medium",
         alignItems: 'center',
-        color: 'white',
+        color: '#e4d9ff',
     },
     buttonContainer:{
         flexDirection: 'row',
         width: '100%',
         borderWidth: 2,
-        borderColor: 'white',
+        borderColor: '#fafaff',
         borderRadius: 6,
         backgroundColor:'',
         marginTop: 40,
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     button1:{
         flex: 1,
         alignItems: 'center',
-        backgroundColor: 'pink',
+        backgroundColor: '#273469',
         opacity: '70%',
         padding:16,
         borderRadius: 6,
@@ -78,6 +80,6 @@ const styles = StyleSheet.create({
     },
     buttonText:{
         fontWeight: "bold",
-        color: 'white'
+        color: '#e4d9ff'
     }
 })
