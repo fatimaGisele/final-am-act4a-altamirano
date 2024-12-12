@@ -10,6 +10,7 @@ export default function MyDatePicker({navigation}){
 
    const date = new Date();
     const [hide, setHide] = useState(false);
+    const [showBtn, setShowBtn] = useState(true);
     const [visible, setVisible] = useState(false);
     const [day, setDay] =useState(date.getDate());
     const [month, setMonth] =useState(date.getMonth()+1);
@@ -23,6 +24,7 @@ export default function MyDatePicker({navigation}){
         }else{
             setMonth(selectedDate.getMonth()+1);
         }
+        setShowBtn(false);
         setVisible(false);
         setHide(true);
     }
@@ -32,6 +34,7 @@ export default function MyDatePicker({navigation}){
     }
 
     const returnTo=()=>{
+        setShowBtn(true);
         setVisible(false);
         setHide(false);
     }
@@ -42,7 +45,7 @@ export default function MyDatePicker({navigation}){
             <View style={styles.view}>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity onPress={toShow} style={styles.button}>
-                    <Text style={styles.buttonText}>Elige una fecha y descubre el evento astronomico de ese dia</Text>
+                   { !showBtn &&<Text style={styles.buttonText}>Elige una fecha y descubre el evento astronomico de ese dia</Text>}
                     </TouchableOpacity>
                     {visible && <DateTimePicker value={date}  onChange={pickDay}/>}
                     {hide && <EventOfADay day={day} month={month} year={year} returnTo={returnTo}/>}
@@ -57,7 +60,7 @@ export default function MyDatePicker({navigation}){
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: 'pink',
+        backgroundColor: '#1a2749',
       },
       view:{
         marginTop: 40,
@@ -67,7 +70,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         borderWidth: 2,
-        borderColor: 'white',
+        borderColor: '#fafaff',
         borderRadius: 6,
         backgroundColor:'',
         marginTop: 40,
@@ -78,9 +81,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding:16,
         borderRadius: 6,
+        backgroundColor: '#1a2749',
+        opacity: '70%'
     },
     buttonText:{
         fontWeight: "bold",
-        color: 'white'
+        color: '#e4d9ff'
     }
 })

@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     view:{
         paddingHorizontal: 30,
         paddingTop: 80,
-        backgroundColor: 'pink',
+        backgroundColor: '#1a2749',
         width: '100%',
     },
     title:{
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textAlign: 'center',
         lineHeight: 35, 
-        color: 'white',
+        color: '#e4d9ff',
         paddingBottom: 30,
     },
     body:{
@@ -72,13 +72,13 @@ const styles = StyleSheet.create({
         lineHeight: 23,
         fontWeight: "medium",
         alignItems: 'center',
-        color: 'white',
+        color: '#e4d9ff',
     },
     buttonContainer:{
         flexDirection: 'row',
         width: '100%',
         borderWidth: 2,
-        borderColor: 'white',
+        borderColor: '#fafaff',
         borderRadius: 6,
         backgroundColor:'',
         marginTop: 40,
@@ -86,28 +86,28 @@ const styles = StyleSheet.create({
     button:{
         flex: 1,
         alignItems: 'center',
-        backgroundColor: 'pink',
+        backgroundColor: '#1a2749',
         opacity: '70%',
         padding:16,
         borderRadius: 16,
     },
     buttonText:{
         fontWeight: "bold",
-        color: 'white'
+        color: '#e4d9ff'
     },
     input:{
-        backgroundColor:'white',
+        backgroundColor:'#fafaff',
         padding:20,
         borderRadius:16,
         marginBottom: 10,
     },
     SignInButton:{
-        backgroundColor:'coral',
+        backgroundColor:'#273469',
         padding: 20,
         borderRadius:16,
         alignItems: 'center',
         marginVertical: 30,
-        shadowColor: 'coral',
+        shadowColor: '#273469',
         shadowOffset: {
             width: 0,
             height: 8,

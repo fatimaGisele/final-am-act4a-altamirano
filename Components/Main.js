@@ -56,7 +56,7 @@ export default function ApodCard({navigation}) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: 'pink',
+    backgroundColor: '#1a2749',
   },
   view:{
     marginTop: 40,
@@ -67,31 +67,32 @@ const styles = StyleSheet.create({
     padding:150,
     width: '100%',
     height: '10%',
-    borderRadius: 10,
+    borderRadius: 16,
+    alignSelf: 'center'
   },
   title: {
     fontSize: 30,
     fontWeight: "bold",
-    color: "#fff",
+    color: "#e4d9ff",
     marginTop: 10,
   },
   description: {
     fontSize: 16,
-    color: "#eee",
+    color: "#fafaff",
     textAlign: 'center',
     margin: 20,
   },
   date: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "white",
+    color: "#e4d9ff",
     marginBottom: 10,
   },
   buttonContainer:{
     flexDirection: 'row',
     width: '100%',
     borderWidth: 2,
-    borderColor: 'white',
+    borderColor: '#fafaff',
     borderRadius: 6,
     backgroundColor:'',
     marginTop: 40,
@@ -102,9 +103,11 @@ button:{
     alignItems: 'center',
     padding:16,
     borderRadius: 6,
+    backgroundColor: '#1a2749',
+    opacity: '70%'
 },
 buttonText:{
     fontWeight: "bold",
-    color: 'white'
+    color: '#e4d9ff'
 }
 });
