@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import  DateTimePicker  from '@react-native-community/datetimepicker';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import EventOfADay from './EventOfADay';
-
+import { getAuth, signOut } from "firebase/auth";
 
 
 
@@ -29,6 +29,17 @@ export default function MyDatePicker({navigation}){
         setHide(true);
     }
       
+    const SignOut = async() =>{
+        const auth = getAuth();
+        signOut(auth).then(() => {
+          Alert.alert('Ha cerrado sesion exitosamente');
+          navigation.navigate('Init');
+        }).catch((error) => {
+            Alert.alert(error.message);
+            console.log(error);
+        });
+    }
+
     const toShow =()=>{
         setVisible(true);
     }
@@ -43,13 +54,20 @@ export default function MyDatePicker({navigation}){
        
         <ScrollView style={styles.card}>
             <View style={styles.view}>
+            { showBtn &&
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity onPress={toShow} style={styles.button}>
-                   { !showBtn &&<Text style={styles.buttonText}>Elige una fecha y descubre el evento astronomico de ese dia</Text>}
-                    </TouchableOpacity>
-                    {visible && <DateTimePicker value={date}  onChange={pickDay}/>}
-                    {hide && <EventOfADay day={day} month={month} year={year} returnTo={returnTo}/>}
+                   <Text style={styles.buttonText}>Elige una fecha y descubre el evento astronomico de ese dia</Text>
+                    </TouchableOpacity>  
                 </View>
+                }
+                {visible && <DateTimePicker value={date}  onChange={pickDay}/>}
+                {hide && <EventOfADay day={day} month={month} year={year} returnTo={returnTo}/>}
+            </View>
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity onPress={SignOut} style={styles.button}>
+                    <Text style={styles.buttonText}>Cerrar Sesion</Text>
+                </TouchableOpacity>
             </View>
         </ScrollView>
        

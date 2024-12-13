@@ -2,7 +2,7 @@ import { imageOfTheDay } from "../lib/http";
 import { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity} from "react-native";
 import UserData from './UserData';
-
+import { getAuth, signOut } from "firebase/auth";
 
 export default function ApodCard({navigation}) {
 
@@ -22,6 +22,19 @@ export default function ApodCard({navigation}) {
       navigation.navigate('MyDatePicker')
       
     }
+
+    
+    const SignOut = async() =>{
+      const auth = getAuth();
+      signOut(auth).then(() => {
+        Alert.alert('Ha cerrado sesion exitosamente');
+        navigation.navigate('Init');
+      }).catch((error) => {
+          Alert.alert(error.message);
+          console.log(error);
+      });
+    }
+
 
     useEffect(() => {
      firstApod();
@@ -44,8 +57,8 @@ export default function ApodCard({navigation}) {
         <Text style={styles.description}>{apod.explanation}</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={()=>navigation.navigate('Init')} style={styles.button}>
-            <Text style={styles.buttonText}>Volver</Text>
+        <TouchableOpacity onPress={SignOut} style={styles.button}>
+            <Text style={styles.buttonText}>Cerrar Sesion</Text>
         </TouchableOpacity>
         </View>
     </ScrollView>

@@ -11,8 +11,6 @@ export default function UserData({navigation}){
     const user = auth.currentUser;
     const [e,setEmail] = useState(user.email);
     
- 
-
     return(
         <View>
             <Text style={styles.text}>Bienvenido {e}</Text>           
@@ -23,7 +21,7 @@ export default function UserData({navigation}){
 const styles = StyleSheet.create({
     text:{
         fontSize: 20,
-        color: "#eee",
+        color: "#E4D9FF",
         textAlign: 'center',
         margin: 10,
         paddingTop:40, 
