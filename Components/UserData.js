@@ -10,7 +10,9 @@ export default function UserData({navigation}){
     const auth = getAuth();
     const user = auth.currentUser;
     const [e,setEmail] = useState(user.email);
-    
+    const [name, setName] = useState(user.usuario);
+ 
+
     return(
         <View>
             <Text style={styles.text}>Bienvenido {e}</Text>           

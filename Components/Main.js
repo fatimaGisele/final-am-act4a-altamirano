@@ -24,15 +24,15 @@ export default function ApodCard({navigation}) {
     }
 
     
-    const SignOut = async() =>{
+    const SignOut = () =>{
       const auth = getAuth();
       signOut(auth).then(() => {
         Alert.alert('Ha cerrado sesion exitosamente');
-        navigation.navigate('Init');
       }).catch((error) => {
           Alert.alert(error.message);
           console.log(error);
       });
+      navigation.navigate('Init');
     }
 
 

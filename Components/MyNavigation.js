@@ -7,7 +7,6 @@ import Register from './Register';
 import ApodCard from './Main';
 import MyDatePicker from './MyDatePicker';
 import UserData from './UserData';
-import SignOut from './SignOut';
 
 export function MyNavigation(){
 
@@ -21,8 +20,7 @@ export function MyNavigation(){
                 <stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
                 <stack.Screen name="ApodCard" component={ApodCard} options={{headerShown:false}}/>
                 <stack.Screen name='MyDatePicker' component={MyDatePicker} options={{headerShown:false}}/>
-                <stack.Screen name='UserData' component={UserData} options={{headerShown:false}}/>
-                <stack.Screen name='SignOut' component={SignOut} options={{headerShown:false}}/>   
+                <stack.Screen name='UserData' component={UserData} options={{headerShown:false}}/> 
             </stack.Navigator>
         </NavigationContainer>
     )
