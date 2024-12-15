@@ -1,11 +1,13 @@
 import { imageOfTheDay } from "../lib/http";
 import { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity} from "react-native";
-import UserData from './UserData';
 import { getAuth, signOut } from "firebase/auth";
 
 export default function ApodCard({navigation}) {
 
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const [e,setEmail] = useState(user.email);
     const [apod, setApod] = useState([]);
     
     const firstApod = async()=>{
@@ -18,6 +20,7 @@ export default function ApodCard({navigation}) {
        
     }
 
+    
     const goToDP=()=>{
       navigation.navigate('MyDatePicker')
       
@@ -42,10 +45,15 @@ export default function ApodCard({navigation}) {
      
   return (
     <ScrollView style={styles.card}>  
-    <UserData/>
 
     <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={goToDP} style={styles.button}>
+      <TouchableOpacity onPress={()=>navigation.navigate('UserData')} style={styles.button}>
+        <Text style={styles.buttonText}>Hola {e}!!!</Text>
+      </TouchableOpacity>
+    </View>
+
+    <View style={styles.buttonContainer}>
+      <TouchableOpacity onPress={()=>navigation.navigate('MyDatePicker')} style={styles.button}>
         <Text  style={styles.buttonText}>Elige un dia</Text>
       </TouchableOpacity>
     </View>

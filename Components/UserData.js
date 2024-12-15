@@ -1,7 +1,7 @@
 //este modulo va a servir para modificar y actualizar los datos del usuario
 import {useState} from "react";
 import { View, StyleSheet, Text, TouchableOpacity,Alert} from "react-native";
-import { getAuth } from "firebase/auth";
+import { getAuth, updateProfile } from "firebase/auth";
 
 
 
@@ -12,6 +12,20 @@ export default function UserData({navigation}){
     const [e,setEmail] = useState(user.email);
     const [name, setName] = useState(user.usuario);
  
+    const updateData=()=>{
+     updateProfile(auth.currentUser,{
+        usuario: user,
+        email: email,
+        contraseña: pass})
+        .then(()=>{
+            Alert.alert('Su perfil a sido actualizado')
+        })
+        .catch((error)=>{
+            console.log(error)
+            Alert.alert(error.message)
+        });
+
+    }
 
     return(
         <View>
