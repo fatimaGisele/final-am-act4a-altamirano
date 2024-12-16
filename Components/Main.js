@@ -20,11 +20,6 @@ export default function ApodCard({navigation}) {
        
     }
 
-    
-    const goToDP=()=>{
-      navigation.navigate('MyDatePicker')
-      
-    }
 
     
     const SignOut = () =>{
@@ -45,27 +40,26 @@ export default function ApodCard({navigation}) {
      
   return (
     <ScrollView style={styles.card}>  
-
-    <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={()=>navigation.navigate('UserData')} style={styles.button}>
-        <Text style={styles.buttonText}>Hola {e}!!!</Text>
-      </TouchableOpacity>
-    </View>
-
-    <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={()=>navigation.navigate('MyDatePicker')} style={styles.button}>
-        <Text  style={styles.buttonText}>Elige un dia</Text>
-      </TouchableOpacity>
-    </View>
-   
+      
       <View style={styles.view}>
+
+      <Text style={styles.description}>Hola {e}!!!</Text>
+
         <Image source={{ uri: apod.hdurl }} style={styles.image} />
         <Text style={styles.title}>{apod.title}</Text>
         <Text style={styles.date}>{apod.date}</Text>
         <Text style={styles.description}>{apod.explanation}</Text>
       </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={SignOut} style={styles.button}>
+
+
+      <View style={styles.buttonContainer1}>
+        <TouchableOpacity onPress={()=>navigation.navigate('MyDatePicker')} style={styles.button1}>
+          <Text  style={styles.buttonText}>Elige un dia</Text>
+        </TouchableOpacity>
+     </View>
+
+      <View style={styles.buttonContainer2}>
+        <TouchableOpacity onPress={SignOut} style={styles.button2}>
             <Text style={styles.buttonText}>Cerrar Sesion</Text>
         </TouchableOpacity>
         </View>
@@ -109,23 +103,35 @@ const styles = StyleSheet.create({
     color: "#e4d9ff",
     marginBottom: 10,
   },
-  buttonContainer:{
+  buttonContainer1:{
+    flexDirection: 'row',
+    width: '100%',
+    borderWidth: 2,
+    borderRadius: 6,
+    marginTop: 40,
+    borderColor: '#fafaff',
+    backgroundColor:'#273469',
+  },
+  buttonContainer2:{
     flexDirection: 'row',
     width: '100%',
     borderWidth: 2,
     borderColor: '#fafaff',
     borderRadius: 6,
-    backgroundColor:'',
-    marginTop: 40,
+    marginTop: 1,
     marginBottom:40
 },
-button:{
+button1:{
     flex: 1,
     alignItems: 'center',
     padding:16,
     borderRadius: 6,
-    backgroundColor: '#1a2749',
-    opacity: '70%'
+},button2:{
+  flex: 1,
+  alignItems: 'center',
+  padding:16,
+  borderRadius: 6,
+  opacity: '70%'
 },
 buttonText:{
     fontWeight: "bold",

@@ -14,7 +14,7 @@ export default function EventOfADay({day,month,year,returnTo}){
             let newImage = await imageOfADay(date)
             setApod(newImage);
         } catch (error) {
-            Alert.alert('Debe elegir una fecha anterior o igual a la actual')
+            Alert.alert('Debe elegir una fecha entre enero de 1996 y el dia de hoy')
             returnTo();
         }
        

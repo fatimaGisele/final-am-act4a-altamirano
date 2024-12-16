@@ -2,7 +2,7 @@ import {useState } from 'react';
 import  DateTimePicker  from '@react-native-community/datetimepicker';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import EventOfADay from './EventOfADay';
-import { getAuth, signOut } from "firebase/auth";
+
 
 
 
@@ -29,16 +29,7 @@ export default function MyDatePicker({navigation}){
         setHide(true);
     }
       
-    const SignOut = () =>{
-        const auth = getAuth();
-        signOut(auth).then(() => {
-          Alert.alert('Ha cerrado sesion exitosamente');
-        }).catch((error) => {
-            Alert.alert(error.message);
-            console.log(error);
-        });
-        navigation.navigate('Init');
-    }
+
 
     const toShow =()=>{
         setVisible(true);
@@ -55,18 +46,19 @@ export default function MyDatePicker({navigation}){
         <ScrollView style={styles.card}>
             <View style={styles.view}>
             { showBtn &&
-                <View style={styles.buttonContainer}>
+                <View style={[styles.buttonContainer,{ marginTop:40, marginBottom:40}]}>
                     <TouchableOpacity onPress={toShow} style={styles.button}>
-                   <Text style={styles.buttonText}>Elige una fecha y descubre el evento astronomico de ese dia</Text>
+                   <Text style={styles.buttonText}>Descubre el evento astronomico del dia</Text>
                     </TouchableOpacity>  
                 </View>
                 }
                 {visible && <DateTimePicker value={date}  onChange={pickDay}/>}
                 {hide && <EventOfADay day={day} month={month} year={year} returnTo={returnTo}/>}
             </View>
+
             <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={SignOut} style={styles.button}>
-                    <Text style={styles.buttonText}>Cerrar Sesion</Text>
+            <TouchableOpacity onPress={()=>navigation.navigate('ApodCard')} style={styles.button}>
+                    <Text style={styles.buttonText}>Inicio</Text>
                 </TouchableOpacity>
             </View>
         </ScrollView>
@@ -87,12 +79,8 @@ const styles = StyleSheet.create({
       buttonContainer:{
         flexDirection: 'row',
         width: '100%',
-        borderWidth: 2,
-        borderColor: '#fafaff',
         borderRadius: 6,
-        backgroundColor:'',
-        marginTop: 40,
-        marginBottom:40
+        backgroundColor:''
     },
     button:{
         flex: 1,
@@ -100,7 +88,9 @@ const styles = StyleSheet.create({
         padding:16,
         borderRadius: 6,
         backgroundColor: '#1a2749',
-        opacity: '70%'
+        opacity: '70%',
+        borderWidth: 1,
+        borderColor: '#fafaff'
     },
     buttonText:{
         fontWeight: "bold",
