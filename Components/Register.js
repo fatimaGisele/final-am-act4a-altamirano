@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, Alert } from "react-native"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
-import { initializeApp } from "firebase/app"
-import { firebaseConfig } from './../lib/firebaseConfig';
-import {getFirestore, collection, addDoc} from 'firebase/firestore';
+import { create, db } from './../lib/firebaseConfig';
+import {collection, addDoc} from 'firebase/firestore';
 
 
 
@@ -14,10 +13,8 @@ export default function Register({navigation}){
     const [pass, setPass] = useState('');
 
 
-    const create = initializeApp(firebaseConfig);
     const auth = getAuth(create);
-    const db = getFirestore(create);
-
+    
     const createAccount=async()=>{
         try {
             const account = await createUserWithEmailAndPassword(auth, email, pass);

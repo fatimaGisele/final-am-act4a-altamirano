@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, Alert } from "react-native"
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
-import { initializeApp} from "firebase/app"
-import { firebaseConfig } from './../lib/firebaseConfig';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { create } from './../lib/firebaseConfig';
 
 
 export default function SignIn({navigation}){
@@ -11,8 +10,8 @@ export default function SignIn({navigation}){
     const [pass, setPass] = useState('');
 
     
-    const create = initializeApp(firebaseConfig);
     const auth = getAuth(create);
+    
 
     const signIn=async()=>{
         try {
@@ -34,10 +33,7 @@ export default function SignIn({navigation}){
             <TextInput style={styles.input} 
             onChangeText={(text)=>setPass(text)}
             placeholder="Password" autoCorrect={false} secureTextEntry={true}/>
-            <TouchableOpacity>
-                <Text style={[styles.buttonText, {fontWeight:'bold', lineHeight:30, textAlign:'right'}]}>
-                    Recuperar Contraseña</Text>
-            </TouchableOpacity>
+
             <TouchableOpacity style={styles.SignInButton} onPress={signIn} >
                 <Text style={{color:'white', fontWeight:'bold'}}>Iniciar sesion</Text>
             </TouchableOpacity>

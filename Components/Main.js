@@ -2,6 +2,8 @@ import { imageOfTheDay } from "../lib/http";
 import { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Image, ScrollView, TouchableOpacity} from "react-native";
 import { getAuth, signOut } from "firebase/auth";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../lib/firebaseConfig";
 
 export default function ApodCard({navigation}) {
 
@@ -20,7 +22,13 @@ export default function ApodCard({navigation}) {
        
     }
 
-
+  const info = async()=>{
+    const userRef = collection(db, "Usuario");
+    const q = query(userRef, where("email", "==", e ));
+    const response = await getDocs(q);     
+    response.forEach((d)=>{console.log(d.data())})
+      
+    }
     
     const SignOut = () =>{
       const auth = getAuth();
